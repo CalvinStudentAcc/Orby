@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Orby - Your productivity in orbit.">
+  <title>Orby - Your Productivity in Orbit</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header" id="top">
+    <nav class="navigation" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Orby home">
+        <img src="assets/images/OrbyIconFinal.png" alt="Orby">
+      </a>
+
+      <div class="nav-actions">
+        <div class="workspace-links">
+          <a href="notespace.html">Notespace</a>
+          <a href="timespace.html">Timespace</a>
+          <a href="taskspace.html">Taskspace</a>
+          <a href="budgetspace.html">Budgetspace</a>
+        </div>
+
+        <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu-panel">
+          <span></span><span></span><span></span>
+        </button>
+
+        <div class="menu-panel" id="menu-panel" hidden>
+          <p class="menu-label">Explore Orby</p>
+          <a href="#about">About Orby</a>
+          <a href="#features">Features</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="stars" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="eyebrow"><span></span>A focused workspace</p>
+        <h1>Your universe,<br><em>organized.</em></h1>
+        <p class="hero-copy">A minimalist workspace for students and individuals. Keep your notes, time, tasks, and budget in one calm place.</p>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <div class="section-copy">
+        <p class="section-label">Why Orby</p>
+        <h2>Cut the noise.<br>Focus on the work.</h2>
+        <p>Most workspace apps give you a blank page and a million tools. Orby provides a structured, minimalist space for studying and personal projects, so you can find your flow faster.</p>
+        <ul class="check-list">
+          <li>Zero learning curve</li>
+          <li>Distraction-free interface</li>
+          <li>Everything synced instantly</li>
+        </ul>
+      </div>
+
+      <div class="preview">
+        <img src="assets/images/OrbyBrandFinal.png" alt="Orby workspace showing all five tools">
+      </div>
+    </section>
+
+    <section class="section features-section" id="features">
+      <div class="centered-heading">
+        <p class="section-label">One workspace</p>
+        <h2>Everything you need,<br>nothing you don't.</h2>
+        <p>Five essential tools, seamlessly connected.</p>
+      </div>
+
+      <div class="feature-grid">
+        <a class="feature-card" href="notespace.html"><span class="feature-icon" aria-hidden="true">✎</span><h3>Notespace</h3><p>Write lecture notes, ideas, and drafts without distractions.</p><span class="feature-link">Open space <b aria-hidden="true">→</b></span></a>
+        <a class="feature-card" href="timespace.html"><span class="feature-icon" aria-hidden="true">◷</span><h3>Timespace</h3><p>Plan your day with simple time blocks and calendar views.</p><span class="feature-link">Open space <b aria-hidden="true">→</b></span></a>
+        <a class="feature-card" href="taskspace.html"><span class="feature-icon" aria-hidden="true">✓</span><h3>Taskspace</h3><p>Keep your to-do list clear, focused, and manageable.</p><span class="feature-link">Open space <b aria-hidden="true">→</b></span></a>
+        <a class="feature-card" href="budgetspace.html"><span class="feature-icon" aria-hidden="true">$</span><h3>Budgetspace</h3><p>Track spending and stay on top of your finances.</p><span class="feature-link">Open space <b aria-hidden="true">→</b></span></a>
+        <article class="feature-card feature-card--static"><span class="feature-icon" aria-hidden="true">◎</span><h3>Progress Tracker</h3><p>Build habits and see your long-term goals take shape.</p><span class="feature-link feature-link--soon">In orbit soon</span></article>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <a class="footer-brand" href="#top"><img src="assets/images/OrbyIconFinal.png" alt="Orby"><span>Orby</span></a>
+    <p>© <span id="year"></span> Orby Workspace. All rights reserved.</p>
+    <a href="mailto:hello@orby.com">hello@orby.com</a>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
