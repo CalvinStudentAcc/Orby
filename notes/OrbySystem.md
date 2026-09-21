@@ -25,6 +25,6 @@ Orby Workspace System Architecture, Structure, and Flow Layout
 ### 2. Dashboard
 
 
-### Flow Layout
+## Flow Layout
 * **Frontend (HTML/CSS/JavaScript):** Receives data and passes it to the backend.
 * **Backend (C#/SQL):** Handles logic validation, data passing, and database structure.
