@@ -1,16 +1,18 @@
 # Orby System
-Orby System Structure and Flow
 
+## System Structure and Flow
 
-1. User Account
+### 1. User Account
 
-Login
-- username or gmail
-- password
+* **Login**
+  * Username or Gmail
+  * Password
+* **Sign Up**
+  * Username
+  * Email
+  * Password
 
-Sign Up
-- username
-- email
-- password
-
-Variables / Data (username, email, password)
+### Variables & Data
+* Username
+* Email
+* Password
