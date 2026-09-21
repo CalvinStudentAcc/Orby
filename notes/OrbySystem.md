@@ -5,7 +5,7 @@ Orby Workspace System Architecture, Structure, and Flow Layout
 1. Login / Sign Up
 2. Dashboard
 
-## Data Models & System Flow
+## System Structure & Data Models 
 
 ### 1. User Account Management
 #### User Account Entity
@@ -25,6 +25,6 @@ Orby Workspace System Architecture, Structure, and Flow Layout
 ### 2. Dashboard
 
 
-### Flow Structure
+### Flow Layout
 * **Frontend (HTML/CSS/JavaScript):** Receives data and passes it to the backend.
 * **Backend (C#/SQL):** Handles logic validation, data passing, and database structure.
