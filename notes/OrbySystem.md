@@ -1,6 +1,5 @@
 # Orby System
-
-## System Structure and Flow
+System Structure and Flow
 
 ### 1. User Account
 
