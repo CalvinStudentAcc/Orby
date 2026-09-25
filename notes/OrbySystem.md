@@ -64,13 +64,18 @@ Organized containers where users can group and manage their workspace tools.
 
 #### Dedicated Modules
 * **Notespace**
-  * Placeholder
+  * Placeholder of feature
 * **Taskspace**
-  * Placeholder
+  * Ability to create and delete tasks. 
+  * Subtasks creation up to 2 levels after main.
+  * User can add title, subheading, description, and note contents.
+  * Completed tasks will be deleted depends on user settings. (1d, 3d, 7d, Custom)
+  * -If a task has subtasks, only completed subtasks will be deleted. Main tasks will be deleted if all subtasks are complete.
+  * JS, C#, SQL: `TaskID` (Parent - Primary Key - Int), `ParentTaskID` (Child - Foreign Key - Int), `Title` (VARCHAR 100), `Subtitle` (VARCHAR 150), `Description` (TEXT), `Notes` (TEXT)
 * **Timespace**
-  * Placeholder
+  * Placeholder of feature
 * **Budgetspace**
-  * Placeholder
+  * Placeholder of feature
 
 ## Flow Layout
 * **Frontend (HTML/CSS/JavaScript):** Receives data and passes it to the backend.
