@@ -70,7 +70,7 @@ Organized containers where users can group and manage their workspace tools.
   * Subtasks creation up to 2 levels after main.
   * User can add title, subheading, description, and note contents.
   * Completed tasks will be deleted depends on user settings. (1d, 3d, 7d, Custom)
-  * -If a task has subtasks, only completed subtasks will be deleted. Main tasks will be deleted if all subtasks are complete.
+  * -If a task has subtasks, only completed subtasks will be deleted if allowed in user settings. Main tasks will be deleted if all subtasks are complete.
   * JS, C#, SQL: `TaskID` (Parent - Primary Key - Int), `ParentTaskID` (Child - Foreign Key - Int), `Title` (VARCHAR 100), `Subtitle` (VARCHAR 150), `Description` (TEXT), `Notes` (TEXT)
 * **Timespace**
   * Placeholder of feature
