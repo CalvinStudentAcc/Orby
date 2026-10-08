@@ -66,12 +66,20 @@ Organized containers where users can group and manage their workspace tools.
 * **Notespace**
   * Placeholder of feature
 * **Taskspace**
-  * Ability to create and delete tasks. 
-  * Subtasks creation up to 2 levels after main.
-  * User can add title, subheading, description, and note contents.
-  * Completed tasks will be deleted depends on user settings. (1d, 3d, 7d, Custom)
-  * -If a task has subtasks, only completed subtasks will be deleted if allowed in user settings. Main tasks will be deleted if all subtasks are complete.
-  * JS, C#, SQL: `TaskID` (Parent - Primary Key - Int), `ParentTaskID` (Child - Foreign Key - Int), `Title` (VARCHAR 100), `Subtitle` (VARCHAR 150), `Description` (TEXT), `Notes` (TEXT)
+  * **Features**
+    * Ability to create and delete tasks.
+    * Subtask creation up to 2 levels deep under the main task.
+    * Allows adding title, subheading, description, and note contents.
+  * **Functions**
+    * Auto-deletes completed tasks based on user setting preferences (1 day, 3 days, 7 days, or Custom).
+    * Handles subtasks conditionally: only completed subtasks are deleted (if enabled), while main tasks are only deleted once all child subtasks are complete.
+  * **System Variables & Data Schema (JS,C#,SQL) **
+    * `TaskID` (INT - Primary Key)
+    * `ParentTaskID` (INT - Foreign Key)
+    * `Title` (VARCHAR 100)
+    * `Subtitle` (VARCHAR 150)
+    * `Description` (TEXT)
+    * `Notes` (TEXT)
 * **Timespace**
   * Placeholder of feature
 * **Budgetspace**
