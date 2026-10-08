@@ -73,7 +73,7 @@ Organized containers where users can group and manage their workspace tools.
   * **Functions**
     * Auto-deletes completed tasks based on user setting preferences (1 day, 3 days, 7 days, or Custom).
     * Handles subtasks conditionally: only completed subtasks are deleted (if enabled), while main tasks are only deleted once all child subtasks are complete.
-  * **System Variables & Data Schema (JS,C#,SQL) **
+  * **System Variables & Data Schema (JS, CS#, SQL)**
     * `TaskID` (INT - Primary Key)
     * `ParentTaskID` (INT - Foreign Key)
     * `Title` (VARCHAR 100)
