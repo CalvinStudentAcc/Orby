@@ -1,0 +1,1136 @@
+/* =========================================================
+   ORBY LOGIN / SIGN UP
+   Depends on shared variables from style.css.
+   All component styles are scoped to the authentication page.
+   ========================================================= */
+
+
+/* =========================================================
+   1. PAGE FOUNDATION
+   ========================================================= */
+
+.auth-page {
+  --a1: #a5acff;
+  --a2: #6fd0fb;
+
+  --c-notes: #a5acff;
+  --c-tasks: #6ee7b7;
+  --c-time: #6fd0fb;
+  --c-budget: #fbbf72;
+
+  position: relative;
+  isolation: isolate;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+
+  padding: 84px 16px 36px;
+
+  /*
+   * Important:
+   * Let the document scroll instead of creating a separate
+   * vertical scrolling container on the body.
+   *
+   * "clip" prevents horizontal overflow without introducing
+   * the scrolling behavior associated with "hidden".
+   */
+  overflow-x: clip;
+  overflow-y: visible;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 35%,
+      #30395b 0%,
+      #20263c 43%,
+      #111521 100%
+    );
+
+  color: var(--foreground);
+}
+
+.auth-page[data-mode="signup"] {
+  --a1: #6fd0fb;
+  --a2: #34d399;
+}
+
+
+/* =========================================================
+   2. BACK LINK
+   ========================================================= */
+
+.auth-page .auth-home {
+  position: fixed;
+  z-index: 20;
+
+  top: 16px;
+  left: 16px;
+
+  display: inline-flex;
+  align-items: center;
+
+  padding: 9px 15px;
+
+  border: 1px solid rgba(148, 163, 184, .17);
+  border-radius: var(--radius-pill);
+
+  background: rgba(13, 17, 30, .76);
+
+  color: var(--muted);
+
+  font-size: .8rem;
+  font-weight: 600;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  transition:
+    color .25s ease,
+    border-color .25s ease,
+    background .25s ease;
+}
+
+.auth-page .auth-home:hover {
+  color: #fff;
+  border-color: var(--a1);
+  background: rgba(20, 26, 43, .95);
+}
+
+
+/* =========================================================
+   3. STAR FIELD
+   ========================================================= */
+
+.auth-page > .stars {
+  position: absolute;
+  z-index: -3;
+
+  inset: -15%;
+
+  opacity: .3;
+  pointer-events: none;
+
+  background-image:
+    radial-gradient(
+      1px 1px at 20px 30px,
+      #fff,
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 90px 80px,
+      #fff,
+      transparent
+    ),
+    radial-gradient(
+      2px 2px at 160px 40px,
+      #fff,
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 70px 150px,
+      #fff,
+      transparent
+    ),
+    radial-gradient(
+      1px 1px at 180px 190px,
+      #b9c9ff,
+      transparent
+    );
+
+  background-size: 210px 210px;
+
+  animation:
+    auth-stars-drift 40s linear infinite;
+}
+
+@keyframes auth-stars-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-70px, -45px, 0);
+  }
+}
+
+
+/* =========================================================
+   4. NEBULA BACKGROUND
+   ========================================================= */
+
+.auth-page::before {
+  content: '';
+
+  position: absolute;
+  z-index: -2;
+
+  top: 50%;
+  left: 50%;
+
+  width: min(900px, 140vw);
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      color-mix(in srgb, var(--a1) 13%, transparent),
+      rgba(56, 189, 248, .035) 42%,
+      transparent 68%
+    );
+
+  filter: blur(35px);
+
+  transform: translate(-50%, -50%);
+
+  animation: auth-nebula 9s ease-in-out infinite;
+}
+
+@keyframes auth-nebula {
+  0%,
+  100% {
+    opacity: .65;
+    scale: .95;
+  }
+
+  50% {
+    opacity: 1;
+    scale: 1.08;
+  }
+}
+
+
+/* =========================================================
+   5. ORBIT SCENE
+   ========================================================= */
+
+.auth-page .orbit-scene {
+  --spin: 0deg;
+
+  position: absolute;
+  z-index: -1;
+
+  top: 50%;
+  left: 50%;
+
+  width: min(850px, 155vmin);
+  aspect-ratio: 1;
+
+  translate: -50% -50%;
+
+  pointer-events: none;
+}
+
+.auth-page .orbit-spin {
+  position: absolute;
+  inset: 0;
+
+  transform: rotate(var(--spin));
+
+  transition:
+    transform 1.25s cubic-bezier(.2, .8, .2, 1);
+}
+
+.auth-page .ring {
+  position: absolute;
+
+  border: 1px dashed rgba(174, 188, 220, .17);
+  border-radius: 50%;
+
+  animation:
+    auth-orbit-rotation var(--t, 60s) linear infinite;
+}
+
+.auth-page .ring--1 {
+  inset: 21%;
+}
+
+.auth-page .ring--2 {
+  inset: 11%;
+
+  border-style: solid;
+  border-color:
+    color-mix(in srgb, var(--a1) 20%, transparent);
+}
+
+.auth-page .ring--3 {
+  inset: 0;
+
+  border-color: rgba(148, 163, 184, .1);
+
+  animation-direction: reverse;
+}
+
+@keyframes auth-orbit-rotation {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================================
+   6. ORBIT PLANETS
+   ========================================================= */
+
+.auth-page .planet {
+  position: absolute;
+
+  top: 0;
+  left: 50%;
+
+  width: 42px;
+  height: 42px;
+
+  margin: -21px 0 0 -21px;
+
+  transform: rotate(calc(var(--spin) * -1));
+
+  transition:
+    transform 1.25s cubic-bezier(.2, .8, .2, 1);
+}
+
+.auth-page .planet--b {
+  top: auto;
+  bottom: 0;
+
+  margin: 0 0 -21px -21px;
+}
+
+.auth-page .planet i {
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid
+    color-mix(in srgb, var(--c) 50%, transparent);
+
+  border-radius: 50%;
+
+  background:
+    color-mix(in srgb, var(--c) 15%, #171d2d);
+
+  color: var(--c);
+
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+
+  box-shadow:
+    0 0 20px
+    color-mix(in srgb, var(--c) 24%, transparent);
+
+  animation:
+    auth-orbit-rotation var(--t, 60s) linear infinite reverse;
+}
+
+.auth-page .ring--3 .planet i {
+  animation-direction: normal;
+}
+
+.auth-page .planet--notes {
+  --c: var(--c-notes);
+}
+
+.auth-page .planet--tasks {
+  --c: var(--c-tasks);
+}
+
+.auth-page .planet--time {
+  --c: var(--c-time);
+}
+
+.auth-page .planet--budget {
+  --c: var(--c-budget);
+}
+
+
+/* =========================================================
+   7. MODE SWITCH SHOCKWAVE
+   ========================================================= */
+
+.auth-page .shockwave {
+  position: absolute;
+  z-index: -1;
+
+  top: 50%;
+  left: 50%;
+
+  width: 250px;
+  aspect-ratio: 1;
+
+  border: 1px solid var(--a1);
+  border-radius: 50%;
+
+  translate: -50% -50%;
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+.auth-page .shockwave.go {
+  animation: auth-shockwave .95s ease-out;
+}
+
+@keyframes auth-shockwave {
+  0% {
+    opacity: .7;
+    scale: .6;
+  }
+
+  100% {
+    opacity: 0;
+    scale: 4;
+  }
+}
+
+
+/* =========================================================
+   8. AUTHENTICATION CARD
+   ========================================================= */
+
+.auth-page .auth-card {
+  position: relative;
+  z-index: 1;
+
+  width: min(420px, 100%);
+  flex: 0 0 auto;
+
+  /*
+   * Center vertically when there is enough space.
+   * Auto margins resolve to zero when content is taller,
+   * so the card can start near the top and the page can grow.
+   */
+  margin-block: auto;
+
+  padding: 30px 28px 26px;
+
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--a1) 24%,
+      rgba(148, 163, 184, .1)
+    );
+
+  border-radius: 25px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(25, 31, 49, .94),
+      rgba(17, 22, 36, .91)
+    );
+
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, .38),
+    0 0 55px
+      color-mix(in srgb, var(--a1) 9%, transparent),
+    inset 0 1px rgba(255, 255, 255, .055);
+
+  transition:
+    border-color .45s ease,
+    box-shadow .45s ease;
+}
+
+.auth-page .auth-card::before {
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+  left: 16%;
+  right: 16%;
+
+  height: 2px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--a1),
+      var(--a2),
+      transparent
+    );
+
+  box-shadow:
+    0 0 22px
+    color-mix(in srgb, var(--a1) 22%, transparent);
+}
+
+.auth-page .auth-card::after {
+  content: '';
+
+  position: absolute;
+  z-index: -1;
+
+  inset: -1px;
+
+  border-radius: inherit;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      color-mix(in srgb, var(--a1) 9%, transparent),
+      transparent 65%
+    );
+
+  pointer-events: none;
+}
+
+.auth-page .auth-card.jolt {
+  animation: auth-card-switch .45s ease;
+}
+
+@keyframes auth-card-switch {
+  0% {
+    transform: scale(1);
+  }
+
+  35% {
+    transform: scale(.985);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+/* =========================================================
+   9. LOGO
+   ========================================================= */
+
+.auth-page .auth-logo {
+  display: block;
+
+  width: 45px;
+  height: 45px;
+
+  margin: 0 auto 18px;
+
+  object-fit: contain;
+
+  filter:
+    drop-shadow(
+      0 0 12px
+      color-mix(in srgb, var(--a1) 40%, transparent)
+    );
+
+  transition: filter .4s ease;
+}
+
+
+/* =========================================================
+   10. LOGIN / SIGN UP TABS
+   ========================================================= */
+
+.auth-page .tabs {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  padding: 4px;
+
+  border: 1px solid rgba(148, 163, 184, .13);
+  border-radius: 999px;
+
+  background: rgba(5, 8, 17, .44);
+}
+
+.auth-page .tabs::before {
+  content: '';
+
+  position: absolute;
+
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+
+  width: calc(50% - 4px);
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(110deg, var(--a1), var(--a2));
+
+  box-shadow:
+    0 3px 20px
+    color-mix(in srgb, var(--a1) 25%, transparent);
+
+  transition:
+    transform .5s cubic-bezier(.2, .8, .2, 1),
+    box-shadow .4s ease;
+}
+
+.auth-page[data-mode="signup"] .tabs::before {
+  transform: translateX(100%);
+}
+
+.auth-page .tabs button {
+  position: relative;
+  z-index: 1;
+
+  min-width: 0;
+
+  padding: 10px 8px;
+
+  border: 0;
+  border-radius: 999px;
+
+  background: transparent;
+
+  color: #8b97b1;
+
+  font-size: .84rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: color .25s ease;
+}
+
+.auth-page .tabs button[aria-selected="true"] {
+  color: #101524;
+}
+
+.auth-page .tabs button:not([aria-selected="true"]):hover {
+  color: #eef2ff;
+}
+
+
+/* =========================================================
+   11. FORM TRANSITION
+   JavaScript measures the active pane and sets container height.
+   ========================================================= */
+
+.auth-page .panes {
+  position: relative;
+
+  width: 100%;
+  height: 0;
+
+  margin-top: 24px;
+
+  overflow: hidden;
+}
+
+/* Don't animate from zero height during initial page load. */
+.auth-page .panes.is-ready {
+  transition:
+    height .48s cubic-bezier(.22, 1, .36, 1);
+}
+
+.auth-page .pane {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translateY(14px) scale(.99);
+
+  transition:
+    opacity .22s ease,
+    transform .32s ease,
+    visibility 0s linear .32s;
+}
+
+.auth-page .pane.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transform: translateY(0) scale(1);
+
+  transition:
+    opacity .3s ease .08s,
+    transform .38s cubic-bezier(.2, .8, .2, 1) .06s,
+    visibility 0s;
+}
+
+.auth-page .pane__inner {
+  padding: 4px;
+}
+
+.auth-page .pane h1 {
+  margin-bottom: 6px;
+
+  color: #f7f8ff;
+
+  font-size: 1.75rem;
+  line-height: 1.2;
+  letter-spacing: -.05em;
+}
+
+.auth-page .sub {
+  margin-bottom: 22px;
+
+  color: #8e9ab4;
+
+  font-size: .9rem;
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   12. INPUT FIELDS
+   ========================================================= */
+
+.auth-page .field {
+  position: relative;
+
+  display: block;
+
+  margin-bottom: 14px;
+}
+
+.auth-page .field input {
+  display: block;
+
+  width: 100%;
+  height: 54px;
+
+  padding: 20px 60px 6px 16px;
+
+  border: 1px solid rgba(148, 163, 184, .17);
+  border-radius: 12px;
+
+  background: rgba(7, 11, 21, .48);
+
+  color: #f1f5f9;
+
+  font-size: .9rem;
+
+  transition:
+    border-color .22s ease,
+    box-shadow .22s ease,
+    background .22s ease;
+}
+
+.auth-page .field input:hover {
+  border-color: rgba(148, 163, 184, .3);
+}
+
+.auth-page .field input:focus {
+  border-color: var(--a1);
+
+  background: rgba(7, 11, 21, .68);
+
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+
+  box-shadow:
+    0 0 0 3px
+    color-mix(in srgb, var(--a1) 13%, transparent);
+}
+
+.auth-page .field input.is-invalid {
+  border-color: #fb7185;
+
+  box-shadow:
+    0 0 0 3px rgba(251, 113, 133, .09);
+}
+
+.auth-page .field span {
+  position: absolute;
+
+  top: 50%;
+  left: 16px;
+
+  translate: 0 -50%;
+
+  color: #75829d;
+
+  font-size: .87rem;
+
+  pointer-events: none;
+
+  transition:
+    top .2s ease,
+    translate .2s ease,
+    color .2s ease,
+    font-size .2s ease;
+}
+
+.auth-page .field input:focus + span,
+.auth-page .field input:not(:placeholder-shown) + span {
+  top: 11px;
+
+  translate: 0 0;
+
+  color: var(--a1);
+
+  font-size: .64rem;
+  letter-spacing: .045em;
+}
+
+
+/* =========================================================
+   13. PASSWORD VISIBILITY
+   ========================================================= */
+
+.auth-page .peek {
+  position: absolute;
+
+  top: 50%;
+  right: 10px;
+
+  translate: 0 -50%;
+
+  padding: 5px 7px;
+
+  border: 0;
+  border-radius: 6px;
+
+  background: transparent;
+
+  color: #8794ae;
+
+  font-size: .7rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    color .2s ease,
+    background .2s ease;
+}
+
+.auth-page .peek:hover {
+  color: var(--a1);
+  background: rgba(255, 255, 255, .04);
+}
+
+
+/* =========================================================
+   14. FORM FEEDBACK
+   ========================================================= */
+
+.auth-page .form-note {
+  min-height: 1.2em;
+
+  margin: 0 0 10px;
+
+  color: #fb7185;
+
+  font-size: .78rem;
+  line-height: 1.5;
+}
+
+.auth-page .form-note.ok {
+  color: var(--c-tasks);
+}
+
+
+/* =========================================================
+   15. SUBMIT BUTTON
+   ========================================================= */
+
+.auth-page .btn-auth {
+  position: relative;
+  isolation: isolate;
+
+  overflow: hidden;
+
+  width: 100%;
+  min-height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  border: 0;
+  border-radius: 999px;
+
+  background:
+    linear-gradient(105deg, var(--a1), var(--a2));
+
+  color: #101524;
+
+  font-size: .86rem;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 7px 24px
+    color-mix(in srgb, var(--a1) 19%, transparent);
+
+  transition:
+    transform .2s ease,
+    box-shadow .25s ease,
+    filter .25s ease;
+}
+
+.auth-page .btn-auth:hover {
+  transform: translateY(-2px);
+
+  filter: brightness(1.05);
+
+  box-shadow:
+    0 12px 30px
+    color-mix(in srgb, var(--a1) 27%, transparent);
+}
+
+.auth-page .btn-auth:active {
+  transform: translateY(0);
+}
+
+.auth-page .btn-auth::after {
+  content: '';
+
+  position: absolute;
+  z-index: -1;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      110deg,
+      transparent 25%,
+      rgba(255, 255, 255, .55) 50%,
+      transparent 75%
+    );
+
+  transform: translateX(-130%);
+
+  transition: transform .65s ease;
+}
+
+.auth-page .btn-auth:hover::after {
+  transform: translateX(130%);
+}
+
+.auth-page .btn-auth b {
+  font-size: 1rem;
+
+  transition: transform .22s ease;
+}
+
+.auth-page .btn-auth:hover b {
+  transform: translateX(4px);
+}
+
+
+/* =========================================================
+   16. LOGIN / SIGN UP SWITCH LINK
+   ========================================================= */
+
+.auth-page .switch {
+  margin: 18px 0 0;
+
+  color: #8e9ab4;
+
+  font-size: .81rem;
+  line-height: 1.7;
+
+  text-align: center;
+}
+
+.auth-page .switch button {
+  display: inline;
+
+  padding: 0;
+
+  border: 0;
+
+  background:
+    linear-gradient(90deg, var(--a1), var(--a2))
+    left bottom / 0% 2px no-repeat;
+
+  color: #eef2ff;
+
+  font: inherit;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background-size .3s ease,
+    color .2s ease;
+}
+
+.auth-page .switch button:hover {
+  background-size: 100% 2px;
+  color: var(--a1);
+}
+
+
+/* =========================================================
+   17. RESPONSIVE: SMALL SCREENS
+   ========================================================= */
+
+@media (max-width: 480px) {
+  .auth-page {
+    padding: 76px 13px 28px;
+  }
+
+  .auth-page .auth-home {
+    top: 11px;
+    left: 12px;
+
+    padding: 8px 12px;
+
+    font-size: .75rem;
+  }
+
+  .auth-page .auth-card {
+    padding: 26px 19px 22px;
+    border-radius: 22px;
+  }
+
+  .auth-page .auth-logo {
+    width: 41px;
+    height: 41px;
+
+    margin-bottom: 16px;
+  }
+
+  .auth-page .panes {
+    margin-top: 20px;
+  }
+
+  .auth-page .pane h1 {
+    font-size: 1.6rem;
+  }
+
+  .auth-page .sub {
+    font-size: .86rem;
+  }
+
+  .auth-page .orbit-scene {
+    width: 175vmin;
+  }
+}
+
+
+/* =========================================================
+   18. RESPONSIVE: SHORT VIEWPORTS
+   ========================================================= */
+
+@media (max-height: 650px) {
+  .auth-page {
+    padding-top: 72px;
+    padding-bottom: 28px;
+  }
+
+  .auth-page .auth-card {
+    margin-block: 0;
+  }
+
+  .auth-page .orbit-scene {
+    position: fixed;
+  }
+}
+
+
+/* =========================================================
+   19. REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-page *,
+  .auth-page *::before,
+  .auth-page *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* =========================================================
+   SCROLLING AND BACKGROUND FIX
+   Append this block to the end of LoginSignUp.css
+   ========================================================= */
+
+.auth-page {
+  /* Let the document grow beyond the viewport when necessary. */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  min-height: 100svh;
+
+  overflow-x: clip;
+  overflow-y: visible;
+
+  /* Use a solid base behind the fixed background layers. */
+  background: #111521;
+}
+
+/* Continuous background gradient across the viewport. */
+.auth-page::after {
+  content: "";
+
+  position: fixed;
+  inset: 0;
+  z-index: -4;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 35%,
+      #30395b 0%,
+      #20263c 43%,
+      #111521 100%
+    );
+}
+
+/* Keep the nebula and stars visible during page scrolling. */
+.auth-page::before {
+  position: fixed;
+}
+
+.auth-page > .stars {
+  position: fixed;
+  inset: -15%;
+}
+
+/* Keep the orbital decorations anchored to the viewport. */
+.auth-page .orbit-scene,
+.auth-page .shockwave {
+  position: fixed;
+}
+
+/* Keep the card in normal document flow. */
+.auth-page .auth-card {
+  flex: 0 0 auto;
+  max-width: 100%;
+}
+
+/* Short viewports: start near the top and allow normal scrolling. */
+@media (max-height: 820px) {
+  .auth-page {
+    justify-content: flex-start;
+    padding-top: 72px;
+    padding-bottom: 28px;
+  }
+
+  .auth-page .auth-card {
+    margin-block: 0 24px;
+  }
+}
