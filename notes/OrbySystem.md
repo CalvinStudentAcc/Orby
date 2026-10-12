@@ -128,7 +128,30 @@ Organized containers where users can group and manage their workspace tools.
     * `Date` (DATETIME)
 
 * **Timespace**
-  * *Placeholder for feature*
+  * **Features**
+    * Ability to create, edit, and delete scheduled events and appointments.
+    * Supports recurring events and reminders for upcoming schedules.
+    * Allows adding titles, descriptions, dates, start and end times, and notes.
+    * Calendar views for organizing schedules by day, week, and month.
+  * **Functions**
+    * Sends reminders for upcoming events based on user-defined preferences.
+    * Supports editing, rescheduling, and deleting existing events.
+    * Detects scheduling conflicts between events and notifies the user.
+    * Allows users to search and filter schedules by title, date, or category.
+  * **System Variables & Data Schema**
+    * `EventID` — INT | Primary Key, Auto-Increment
+    * `FolderID` — INT | Foreign Key, Nullable
+    * `Title` — VARCHAR(100) | NOT NULL, Max: 100 chars
+    * `Description` — TEXT | NULL
+    * `Category` — VARCHAR(50) | NULL
+    * `StartDateTime` — DATETIME | NOT NULL
+    * `EndDateTime` — DATETIME | NOT NULL
+    * `IsRecurring` — TINYINT(1) / BOOLEAN | DEFAULT 0
+    * `RecurrenceRule` — VARCHAR(100) | NULL
+    * `ReminderMinutes` — INT | NULL
+    * `Notes` — TEXT | NULL
+    * `CreatedAt` — DATETIME | DEFAULT CURRENT_TIMESTAMP
+    * `DateModified` — DATETIME | DEFAULT CURRENT_TIMESTAMP
 
 ## Flow Layout
 * **Frontend (HTML/CSS/JavaScript):** Receives data and passes it to the backend.
