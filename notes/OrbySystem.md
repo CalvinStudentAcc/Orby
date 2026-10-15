@@ -39,9 +39,10 @@ Orby Workspace System Architecture, Structure, and Flow Layout
   * `password`
 
 #### Core Variables & Data Attributes
-* `username` (string)
-* `email` (string)
-* `password` (string)
+* `UserID` (INT, - Auto Increment - Primary Key)
+* `username` (VarChar50 - Not Null - Unique)
+* `email` (VarChar255 - Not Null - Unique)
+* `password` (VarChar255 - Not Null)
 
 ### 3. Dashboard
 * **Navigation**
